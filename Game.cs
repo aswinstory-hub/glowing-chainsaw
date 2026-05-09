@@ -4,6 +4,9 @@ class Game
 {
 
     Player player;
+    float timer = 0f;
+    float moveDelay = 0.4f;
+
     public Game()
     {
         Raylib.InitWindow(1280, 720, "Snake");
@@ -25,7 +28,16 @@ class Game
 
     void Update()
     {
-        player.Move(); 
+        player.HandleInput();
+
+        timer += Raylib.GetFrameTime();
+
+        if (timer >= moveDelay)
+        {
+            player.Move();
+
+            timer = 0f;
+        } 
     }
 
     void Draw()
