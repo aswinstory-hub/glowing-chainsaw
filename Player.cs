@@ -5,6 +5,7 @@ class Player
     // State Variables
     public int x = (1280/2) - 40;
     public int y = (720/2) - 40;
+    public int score = 0;
     int speed = 40;
     int size = 40;
     int x_direction = 0;

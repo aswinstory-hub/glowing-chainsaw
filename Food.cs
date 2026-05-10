@@ -9,10 +9,12 @@ class Food
 
     // Update functions
 
-    public void UpdateFood(int player_x, int player_y)
+    public void UpdateFood(Player player)
     {
-        if (player_x == foodX & player_y == foodY)
+        if (player.x == foodX & player.y == foodY)
         {
+            player.score ++;
+            Console.WriteLine("Score: " + player.score);       
             SpawnFood();
         }
     }
