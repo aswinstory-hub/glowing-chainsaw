@@ -29,7 +29,7 @@ class Game
     void Update()
     {
         player.Move();
-        food.UpdateFood(player);
+        player.UpdateBody(food);
     }
 
     void Draw()
