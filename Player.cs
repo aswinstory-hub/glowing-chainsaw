@@ -31,10 +31,10 @@ class Player
     {
         var key = Raylib.IsKeyPressed;
 
-        if (key(KeyboardKey.Up))       {y_direction = -1; x_direction = 0;}
-        if (key(KeyboardKey.Down))     {y_direction = 1;  x_direction = 0;}
-        if (key(KeyboardKey.Right))    {x_direction = 1;  y_direction = 0;}
-        if (key(KeyboardKey.Left))     {x_direction = -1; y_direction = 0;}
+        if (key(KeyboardKey.Up) & y_direction != 1)        {y_direction = -1; x_direction = 0;}
+        if (key(KeyboardKey.Down) & y_direction != -1)     {y_direction = 1;  x_direction = 0;}
+        if (key(KeyboardKey.Right) & x_direction != -1)    {x_direction = 1;  y_direction = 0;}
+        if (key(KeyboardKey.Left) & x_direction != 1)      {x_direction = -1; y_direction = 0;}
 
     }
 
