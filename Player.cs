@@ -3,12 +3,14 @@ using Raylib_cs;
 class Player
 {
     // State Variables
-    int x = 630;
-    int y = 350;
-    int speed = 20;
-    int size = 20;
+    public int x = (1280/2) - 40;
+    public int y = (720/2) - 40;
+    int speed = 40;
+    int size = 40;
     int x_direction = 0;
     int y_direction = 0;
+    float timer = 0f;
+    float moveDelay = 0.3f;
 
 
     static Player()
@@ -30,9 +32,17 @@ class Player
 
     public void Move()
     {
-        x += x_direction * speed;
-        y += y_direction * speed;
+        HandleInput();
 
+        timer += Raylib.GetFrameTime();
+
+        if (timer >= moveDelay)
+        {
+            x += x_direction * speed;
+            y += y_direction * speed;
+            
+            timer = 0f;
+        } 
     }
 
     // Draw Functions

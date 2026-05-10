@@ -4,8 +4,7 @@ class Game
 {
 
     Player player;
-    float timer = 0f;
-    float moveDelay = 0.4f;
+    Food food;
 
     public Game()
     {
@@ -13,6 +12,7 @@ class Game
         Raylib.SetTargetFPS(60);
 
         player = new Player();   
+        food = new Food();
     }
 
     public void Run()
@@ -28,16 +28,8 @@ class Game
 
     void Update()
     {
-        player.HandleInput();
-
-        timer += Raylib.GetFrameTime();
-
-        if (timer >= moveDelay)
-        {
-            player.Move();
-
-            timer = 0f;
-        } 
+        player.Move();
+        food.UpdateFood(player.x, player.y);
     }
 
     void Draw()
@@ -45,6 +37,8 @@ class Game
         Raylib.BeginDrawing();
 
         Raylib.ClearBackground(Color.Black);
+
+        food.Draw();
 
         player.Draw();
 
