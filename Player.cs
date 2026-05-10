@@ -1,8 +1,5 @@
 using Raylib_cs;
-using System.Collections.Generic;
 using System.Numerics;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 
 class Player
 {
@@ -13,11 +10,12 @@ class Player
     public int score = 0;
     int speed = 40;
     int size = 40;
-    int x_direction = 0;
+    int x_direction = -1;
     int y_direction = 0;
     float timer = 0f;
     float moveDelay = 0.3f;
     int grow = 0;
+    bool gameOver = false;
 
 
     public Player()
@@ -45,9 +43,24 @@ class Player
         timer += Raylib.GetFrameTime();
 
         if (timer >= moveDelay)
-        {
+        {    
             x += x_direction * speed;
             y += y_direction * speed;
+            
+            if (x < 0 || x >= 1280 || y < 0 || y >= 720)
+            {
+                gameOver = true;
+            }
+            else if (position.Count != 0)
+            {
+                foreach (Vector2 segment in position)
+                {
+                    if (x == Convert.ToInt32(segment.X) && y == Convert.ToInt32(segment.Y))
+                    {
+                        gameOver = true;
+                    }
+                }
+            }
 
             Vector2 newHead = new Vector2(x, y);
             position.Insert(0, newHead);
@@ -67,7 +80,7 @@ class Player
 
     public void UpdateBody(Food food)
     {
-        if (food.x == x & food.y == y)
+        if (food.x == x && food.y == y)
         {
             grow ++;
             score ++;
@@ -76,13 +89,31 @@ class Player
         }
     }
 
+    public bool UpdateGameOver()
+    {
+        return gameOver;
+    }
+
     // Draw Functions
     public void Draw()
     {
         foreach (Vector2 segment in position)
         {
-            Raylib.DrawRectangle(Convert.ToInt32(segment.X), Convert.ToInt32(segment.Y), size, size, Color.DarkGreen);
+            Raylib.DrawRectangleRounded(
+                new Rectangle(
+                    segment.X,
+                    segment.Y,
+                    size,
+                    size
+                ),
+                0.4f,
+                8,
+                Color.DarkGreen
+            );
         }
     }
 
+    public void DrawScore()
+    {}
 }
+

@@ -2,7 +2,7 @@ using Raylib_cs;
 
 class Food
 {
-    int size = 40;
+    int size = 20;
     const int CELL_SIZE = 40;
     public int x = 40;
     public int y = 40;
@@ -19,6 +19,6 @@ class Food
     // Draw functions
     public void Draw()
     {
-        Raylib.DrawRectangle(x, y, size, size, Color.Red);
+        Raylib.DrawCircle(x + (CELL_SIZE / 2), y + (size / 2), size, Color.Red);
     } 
 }
