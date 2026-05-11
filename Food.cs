@@ -12,13 +12,13 @@ class Food
 
     public void SpawnFood()
     {
-        x = Raylib.GetRandomValue(0, 31) * CELL_SIZE;
+        x = Raylib.GetRandomValue(0, 17) * CELL_SIZE;
         y = Raylib.GetRandomValue(0, 17) * CELL_SIZE;
     }
 
     // Draw functions
     public void Draw()
     {
-        Raylib.DrawCircle(x + (CELL_SIZE / 2), y + (size / 2), size, Color.Red);
+        Raylib.DrawCircle(x + (CELL_SIZE / 2), y + (CELL_SIZE / 2), size, Color.Red);
     } 
 }

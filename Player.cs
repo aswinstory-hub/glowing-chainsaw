@@ -47,7 +47,7 @@ class Player
             x += x_direction * speed;
             y += y_direction * speed;
             
-            if (x < 0 || x >= 1280 || y < 0 || y >= 720)
+            if (x < 0 || x >= 720 || y < 0 || y >= 720)
             {
                 gameOver = true;
             }
